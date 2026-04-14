@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "memory-keeper-daily",
+      "name": "Memory Keeper Daily",
+      "schedule": "0 3 * * *",
+      "type": "bash",
+      "command": "python -m memory_keeper.dreamtime",
+      "cwd": "/path/to/your/memory_keeper_parent",
+      "env": {
+        "ARK_KEY": "${ARK_KEY}",
+        "ARK_URL": "${ARK_URL}",
+        "DREAMTIME_INBOX": "${DREAMTIME_INBOX}",
+        "MEMORY_KEEPER_STORE": "${MEMORY_KEEPER_STORE}"
+      },
+      "logFile": "~/.claude/memory-store/logs/dreamtime.log",
+      "enabled": true
+    }
+  ]
+}

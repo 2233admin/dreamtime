@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+dist/
+build/
+*.egg
+
+# Runtime / local state
+memory_keeper/.context/
+memory-store/queue/
+config.yaml
+
+# OMC
+.omc/
+
+# IDE
+.vscode/
+.idea/

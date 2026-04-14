@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "memory-keeper"
+version = "0.1.0"
+requires-python = ">=3.10"
+description = "Session-close memory distillation for Claude Code"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+  { name = "memory-keeper contributors" },
+]
+keywords = ["claude-code", "memory", "llm", "agent"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = ["PyYAML>=6.0"]
+
+[project.urls]
+Homepage = "https://github.com/2233admin/memory-keeper"
+Issues = "https://github.com/2233admin/memory-keeper/issues"
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff"]
+
+[project.scripts]
+# Primary entry point: uvx memory-keeper --install-hook
+memory-keeper = "memory_keeper.dreamtime.hook:_cli"
+# Legacy alias kept for backward compat
+dreamtime = "memory_keeper.dreamtime.__main__:_cli"
+
+[tool.setuptools.packages.find]
+include = ["memory_keeper*"]
+
+[tool.ruff]
+line-length = 100

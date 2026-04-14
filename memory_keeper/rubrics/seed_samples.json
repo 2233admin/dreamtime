@@ -1,0 +1,132 @@
+[
+  {
+    "id": "seed_001",
+    "input": "用户：所有Bash命令必须加rtk前缀，这样能节省60-90%的token。\nAssistant：好的，记住了，以后所有bash命令前加rtk。",
+    "expected": {
+      "proposition": "所有Bash命令必须加rtk前缀（60-90% token savings）",
+      "type": "preference",
+      "support_status": "supported",
+      "scores": {"durability": 2, "novelty": 2, "actionability": 2, "confidence": 2, "scope": 2},
+      "total_score": 10,
+      "action": "write"
+    },
+    "notes": "用户明确说过，跨项目通用，直接可执行，最高分典型案例"
+  },
+  {
+    "id": "seed_002",
+    "input": "用户：别用pip install -e .覆盖CUDA版本的torch，上次这么干导致CUDA环境全坏了。\nAssistant：明白，ML项目里禁止用pip install -e .覆盖torch。",
+    "expected": {
+      "proposition": "ML项目禁止用pip install -e .覆盖CUDA torch，会破坏CUDA环境",
+      "type": "correction",
+      "support_status": "supported",
+      "scores": {"durability": 2, "novelty": 2, "actionability": 2, "confidence": 2, "scope": 1},
+      "total_score": 9,
+      "action": "write"
+    },
+    "notes": "用户纠错（最强信号），有具体事故原因，项目级（不是所有项目都有CUDA）"
+  },
+  {
+    "id": "seed_003",
+    "input": "用户：这个功能的P_risk multiplier我们设为0.7吧，现在市场波动率高。\nAssistant：好的，P_risk multiplier设为0.7。",
+    "expected": {
+      "proposition": "P_risk multiplier当前设为0.7（高波动率环境下的决策）",
+      "type": "decision",
+      "support_status": "supported",
+      "scores": {"durability": 1, "novelty": 2, "actionability": 1, "confidence": 2, "scope": 0},
+      "total_score": 6,
+      "action": "write"
+    },
+    "notes": "技术决策，但可能随市场变化，scope仅限当前项目"
+  },
+  {
+    "id": "seed_004",
+    "input": "用户：SUPER机器必须通过跳板机访问，不能直接SSH。\nAssistant：收到，SUPER需要先连跳板再转发。",
+    "expected": {
+      "proposition": "SUPER机器SSH必须通过跳板机，不能直连",
+      "type": "fact",
+      "support_status": "supported",
+      "scores": {"durability": 2, "novelty": 2, "actionability": 2, "confidence": 2, "scope": 1},
+      "total_score": 9,
+      "action": "write"
+    },
+    "notes": "基础设施事实，跨session持久，直接影响所有SUPER相关操作"
+  },
+  {
+    "id": "seed_005",
+    "input": "用户：不对，我说的不是要mock数据库，我们上季度就因为mock测试过了但prod炸了。\nAssistant：明白了，集成测试必须连真实数据库，不能mock。",
+    "expected": {
+      "proposition": "集成测试禁止mock数据库，必须连真实DB（上季度有过mock/prod不一致导致故障）",
+      "type": "correction",
+      "support_status": "supported",
+      "scores": {"durability": 2, "novelty": 2, "actionability": 2, "confidence": 2, "scope": 1},
+      "total_score": 9,
+      "action": "write"
+    },
+    "notes": "纠错+有事故背景，高置信度，应记录原因"
+  },
+  {
+    "id": "seed_006",
+    "input": "用户：在Bash里密码含!字符的话要用Python subprocess，不能直接shell命令。\nAssistant：好的，含!的密码用Python subprocess避免shell转义问题。",
+    "expected": {
+      "proposition": "Bash里密码含!字符时用Python subprocess，避免shell转义失败",
+      "type": "gotcha",
+      "support_status": "supported",
+      "scores": {"durability": 2, "novelty": 2, "actionability": 2, "confidence": 2, "scope": 2},
+      "total_score": 10,
+      "action": "write"
+    },
+    "notes": "踩坑记录，跨项目通用，直接可执行"
+  },
+  {
+    "id": "seed_007",
+    "input": "用户：好的，SSH远程命令以后用heredoc或者SDK，别手拼转义嵌套，每次都出问题。\nAssistant：明白，SSH远程命令用heredoc或SDK，禁止手拼嵌套转义。",
+    "expected": {
+      "proposition": "SSH远程命令禁止手拼转义嵌套，必须用heredoc或SDK",
+      "type": "gotcha",
+      "support_status": "supported",
+      "scores": {"durability": 2, "novelty": 2, "actionability": 2, "confidence": 2, "scope": 2},
+      "total_score": 10,
+      "action": "write"
+    },
+    "notes": "另一个跨项目踩坑，多次出问题（用户说'每次'），最高分"
+  },
+  {
+    "id": "seed_008",
+    "input": "用户：我注意到你每次都先问架构再写代码，这个习惯挺好的。\nAssistant：是的，我倾向于先理解整体结构再动手写。",
+    "expected": {
+      "proposition": "用户习惯先讨论架构再写代码，Claude应配合这个节奏",
+      "type": "pattern",
+      "support_status": "inferred",
+      "scores": {"durability": 2, "novelty": 2, "actionability": 1, "confidence": 1, "scope": 2},
+      "total_score": 8,
+      "action": "write"
+    },
+    "notes": "跨session行为模式，用户主动点出，inferred因为是用户描述Claude行为而非直接指令"
+  },
+  {
+    "id": "seed_009",
+    "input": "用户：Worker层只能用廉价模型，MiniMax或者Doubao，Claude/GPT-4太贵了。\nAssistant：好的，Worker层用MiniMax/Doubao，禁止Claude/GPT-4。",
+    "expected": {
+      "proposition": "Worker层禁止用Claude/GPT-4，只能用MiniMax或Doubao等廉价模型",
+      "type": "preference",
+      "support_status": "supported",
+      "scores": {"durability": 2, "novelty": 2, "actionability": 2, "confidence": 2, "scope": 1},
+      "total_score": 9,
+      "action": "write"
+    },
+    "notes": "成本控制决策，直接可执行，项目级（非所有项目有Worker层）"
+  },
+  {
+    "id": "seed_010",
+    "input": "用户：好的，那就先跑这个测试看看。\nAssistant：好的，我来运行一下。",
+    "expected": {
+      "proposition": null,
+      "type": null,
+      "support_status": null,
+      "scores": null,
+      "total_score": 0,
+      "action": "discard"
+    },
+    "notes": "纯当次上下文的临时指令，不含跨session价值，应丢弃。durability=0, novelty=0"
+  }
+]

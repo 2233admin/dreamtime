@@ -1,0 +1,20 @@
+# memory-keeper configuration
+# Copy this file to config.yaml and fill in your values.
+# config.yaml is gitignored — your API key will never be committed.
+
+api:
+  # Any OpenAI-compatible endpoint works (Anthropic, OpenAI, local, relay).
+  # Default points to the official Anthropic API.
+  base_url: "https://api.anthropic.com/v1"
+
+  # Model used for session distillation.
+  # Cheap, fast models work well; distillation prompts are concise.
+  # Examples: claude-haiku-4-5-20251001, gpt-4o-mini, MiniMax-M2.7-highspeed
+  model: "claude-haiku-4-5-20251001"
+
+  # Your API key for the chosen endpoint.
+  api_key: "sk-YOUR_API_KEY_HERE"
+
+# Optional: override where memory-keeper stores its working files.
+# Defaults to ~/.claude/memory-store/ if omitted.
+# store_dir: "/path/to/your/memory-store"
