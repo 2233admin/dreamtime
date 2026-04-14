@@ -3,7 +3,7 @@ requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "memory-keeper"
+name = "dreamtime"
 version = "0.1.0"
 requires-python = ">=3.10"
 description = "Session-close memory distillation for Claude Code"
@@ -12,7 +12,7 @@ license = "MIT"
 authors = [
   { name = "memory-keeper contributors" },
 ]
-keywords = ["claude-code", "memory", "llm", "agent"]
+keywords = ["claude-code", "memory", "llm", "agent", "dreamtime"]
 classifiers = [
   "Development Status :: 4 - Beta",
   "Intended Audience :: Developers",
@@ -26,17 +26,15 @@ classifiers = [
 dependencies = ["PyYAML>=6.0"]
 
 [project.urls]
-Homepage = "https://github.com/2233admin/memory-keeper"
-Issues = "https://github.com/2233admin/memory-keeper/issues"
+Homepage = "https://github.com/2233admin/dreamtime"
+Issues = "https://github.com/2233admin/dreamtime/issues"
 
 [project.optional-dependencies]
 dev = ["pytest", "ruff"]
 
 [project.scripts]
-# Primary entry point: uvx memory-keeper --install-hook
+dreamtime = "memory_keeper.dreamtime.hook:_cli"
 memory-keeper = "memory_keeper.dreamtime.hook:_cli"
-# Legacy alias kept for backward compat
-dreamtime = "memory_keeper.dreamtime.__main__:_cli"
 
 [tool.setuptools.packages.find]
 include = ["memory_keeper*"]
